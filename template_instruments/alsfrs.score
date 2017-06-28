@@ -1,0 +1,42 @@
+#!/usr/bin/php
+<?php
+/**
+* BMI Scoring
+*
+* PHP version 5
+*
+* @category Main
+* @package  BMI_Instrument
+* @author   Rathi Gnanasekaran <sekaranrathi@gmail.com>
+* @license  http://www.gnu.org/licenses/gpl-3.0.txt GPLv3
+* @link     https://github.com/aces/Loris
+*/
+
+require_once "../tools/generic_includes.php";
+require_once "Database.class.inc";
+$CommentID = $argv[1];
+$db        =& Database::singleton();
+$query         = "SELECT * from alsfrs WHERE CommentID = :CommentID";
+$WhereCriteria = array('CommentID'=>$CommentID);
+$record        = array();
+$record        = $db->pselectRow($query, $WhereCriteria);
+$scores = array();
+
+$speech = $record['speech']+$record['salivation']+$record['swallowing']+$record['handwriting']+$record['cutting_no_gastrostomy']+$record['cutting_gastrostomy']+$record['dressing']+$record['turning']+$record['walking']+$record['climbing']+$record['dyspnea']+$record['orthopnea']+$record['respiratory'];
+
+if(empty($speech)) {
+    $scores['total']          = 'Unable to calculate';
+    
+
+} else {
+   
+    $scores['total']          = round($speech, 2);
+    
+
+}
+//save scores
+$result = $db->update('alsfrs', $scores, $WhereCriteria);
+
+exit(0);
+
+?>

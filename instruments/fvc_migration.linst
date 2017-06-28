@@ -1,0 +1,41 @@
+table{@}fvc
+title{@}Forced Vital Capacity Form
+date{@}Date_taken{@}Date of Administration{@}2017{@}2024{@}undefined
+static{@}Candidate_Age{@}Candidate Age (Months)
+static{@}Window_Difference{@}Window Difference (+/- Days)
+select{@}Examiner{@}Examiner{@}NULL=>''
+select{@}test{@}Test Type{@}NULL=>''{-}''=>''{-}'fvc'=>'Forced Vital Capacity'{-}'svc'=>'Slow Vital Capacity'{-}'not_done'=>'Not Done'{-}'not_answered'=>'Not Answered'
+numeric{@}v_trial_1{@}Volume (L) Trial 1{@}0{@}100
+select{@}v_trial_1_status{@}{@}NULL=>''{-}'not_answered'=>'Not Done'
+numeric{@}v_trial_2{@}Volume (L) Trial 2{@}0{@}100
+select{@}v_trial_2_status{@}{@}NULL=>''{-}'not_answered'=>'Not Done'
+numeric{@}v_trial_3{@}Volume (L) Trial 3{@}0{@}100
+select{@}v_trial_3_status{@}{@}NULL=>''{-}'not_answered'=>'Not Done'
+numeric{@}v_trial_4{@}Volume (L) Trial 4 (if trials 1-3 >10% variability){@}0{@}100
+select{@}v_trial_4_status{@}{@}NULL=>''{-}'not_answered'=>'Not Done'
+numeric{@}v_trial_5{@}Volume (L) Trial 5 (if trials 1-4 >10% variability){@}0{@}100
+select{@}v_trial_5_status{@}{@}NULL=>''{-}'not_answered'=>'Not Done'
+numeric{@}b_trial{@}Best Trial (L){@}0{@}100
+select{@}b_trial_status{@}{@}NULL=>''{-}'not_answered'=>'Not Done'
+numeric{@}b_trial_predicted{@}Best Trial (% predicted){@}0{@}100
+select{@}b_trial_predicted_status{@}{@}NULL=>''{-}'not_answered'=>'Not Done'
+select{@}ethnicity{@}Ethnicity{@}NULL=>''{-}''=>''{-}'caucasian'=>'Caucasian'{-}'asian'=>'Asian'{-}'aboriginal'=>'Aboriginal'{-}'hispanic'=>'Hispanic'{-}'black/african-canadian'=>'Black/African-Canadian'{-}'other'=>'Other'{-}'not_answered'=>'Not Answered'
+text{@}o_1{@}If other, state
+select{@}o_1_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+select{@}reference_set{@}Predicted Reference Set Used{@}NULL=>''{-}''=>''{-}'knudsen_83'=>'Knudsen 83'{-}'crapo'=>'CRAPO'{-}'nhanes_iii'=>'NHANES III'{-}'canadian_ref_04'=>'Canadian Ref 04'{-}'ers/eccs'=>'ERS/ECCS'{-}'other'=>'Other'{-}'not_answered'=>'Not Answered'
+text{@}o_2{@}If other, state
+select{@}o_2_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+select{@}height_type{@}Select Height Measurement Scale{@}NULL=>''{-}'cm'=>'cm'{-}'ft'=>'ft'
+numeric{@}height{@}Height{@}0{@}500
+select{@}height_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+select{@}weight_type{@}Select Weight Measurement Scale{@}NULL=>''{-}'kg'=>'kg'{-}'lb'=>'lb'
+numeric{@}weight{@}Weight{@}0{@}500
+select{@}weight_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+select{@}breathing_conditions{@}Breathing Conditions{@}NULL=>''{-}''=>''{-}'none'=>'None'{-}'asthma'=>'Asthma'{-}'possible_asthma'=>'Possible Asthma'{-}'copd'=>'COPD'{-}'pneumonia'=>'Pneumonia'{-}'other'=>'Other'{-}'not_answered'=>'Not Answered'
+text{@}o_3{@}If other, state
+select{@}o_3_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+select{@}smoker{@}Smoker{@}NULL=>''{-}''=>''{-}'yes'=>'Yes'{-}'no'=>'No'{-}'former'=>'Former'{-}'not_answered'=>'Not Answered'
+select{@}fvc_reliability{@}FVC Reliability{@}NULL=>''{-}''=>''{-}'reliable'=>'Reliable'{-}'unreliable'=>'Unreliable'{-}'not_available'=>'Not Available'{-}'unknown'=>'Unknown'{-}'not_answered'=>'Not Answered'
+textarea{@}notes{@}Notes
+select{@}notes_status{@}{@}NULL=>''{-}'not_answered'=>'No Comments'
+

@@ -1,0 +1,34 @@
+table{@}alsfrs
+title{@}A<span style='font-size: 26px'>LSFRS </span>F<span style='font-size: 26px'>ORM</span>
+date{@}Date_taken{@}Date of Administration{@}2006{@}2012
+static{@}Candidate_Age{@}Candidate Age (Months)
+static{@}Window_Difference{@}Window Difference (+/- Days)
+select{@}Examiner{@}Examiner{@}NULL=>''
+select{@}gastostomy{@}Has patient had gastrostomy (PEG tube)?{@}NULL=>''{-}''=>''{-}'yes'=>'Yes'{-}'no'=>'No'{-}'not_answered'=>'Not Answered'
+numeric{@}speech{@}1. Speech Score:{@}0{@}4
+select{@}speech_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}salivation{@}2. Salivation:{@}0{@}4
+select{@}salivation_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}swallowing{@}3. Swallowing:{@}0{@}4
+select{@}swallowing_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}handwriting{@}3. Handwriting:{@}0{@}4
+select{@}handwriting_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}cutting_no_gastrostomy{@}5a. Cutting food and handling utensils (patients without gastrostomy):{@}0{@}4
+select{@}cutting_no_gastrostomy_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}cutting_gastrostomy{@}5b. Cutting food and handling utensils (patients with gastrostomy):{@}0{@}4
+select{@}cutting_gastrostomy_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}dressing{@}6. Dressing and Hygeine:{@}0{@}4
+select{@}dressing_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}turning{@}7. Turning in Bed and Adjusting Bed Clothes:{@}0{@}4
+select{@}turning_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}walking{@}8. Walking:{@}0{@}4
+select{@}walking_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}climbing{@}9. Climbing Stairs:{@}0{@}4
+select{@}climbing_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}dyspnea{@}10. Dyspnea:{@}0{@}4
+select{@}dyspnea_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}orthopnea{@}11. Orthopnea:{@}0{@}4
+select{@}orthopnea_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+numeric{@}repiratory{@}12. Respiratory Insufficiency:{@}0{@}4
+select{@}repiratory_status{@}{@}NULL=>''{-}'not_answered'=>'Not Answered'
+static{@}total{@}Total ALSFRS Score
