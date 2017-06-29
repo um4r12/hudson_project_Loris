@@ -241,7 +241,7 @@ class NDB_BVL_Instrument_Study_Status_Form extends NDB_BVL_Instrument
 
                 $this->form->addElement('static', null, $hr_section);
 
-                // PAV
+                // PAV GitTest
 
                 // PAV Field
 
