@@ -149,10 +149,10 @@ class NDB_BVL_Instrument_npef_p extends NDB_BVL_Instrument
 
         $this->form->addElement('static', null, $this->indent . 'Verbal Fluency');
 
-            $this->form->addElement('text', 'verbal_s', $this->indent . $this->indent . $this->indent . $this->indent . 'First Letter S/F/P:');
+            $this->form->addElement('text', 'verbal_s', $this->indent . $this->indent . $this->indent . $this->indent . 'First Letter (S/F/P):');
             $this->form->addRule('verbal_s','Numerical value required.', 'numeric');
 
-            $this->form->addElement('text', 'verbal_t', $this->indent . $this->indent . $this->indent . $this->indent . 'T/D/M:');
+            $this->form->addElement('text', 'verbal_t', $this->indent . $this->indent . $this->indent . $this->indent . 'Second Letter (T/D/M):');
             $this->form->addRule('verbal_t','Numerical value required.', 'numeric');
 
          $this->form->addElement('static', null, $this->indent . 'Executive');
@@ -163,12 +163,13 @@ class NDB_BVL_Instrument_npef_p extends NDB_BVL_Instrument
             $this->form->addElement('text', 'executive_alternation', $this->indent . $this->indent . $this->indent . $this->indent . 'Alternation:');
             $this->form->addRule('executive_alternation','Numerical value required.', 'numeric');
 
-            $this->form->addElement('text', 'executive_social', $this->indent . $this->indent . $this->indent . $this->indent . 'Social Cognitiion:');
-            $this->form->addRule('executive_social','Numerical value required.', 'numeric');
-
             $this->form->addElement('text', 'executive_sentence', $this->indent . $this->indent . $this->indent . $this->indent . 'Sentence Completion:');
             $this->form->addRule('executive_sentence','Numerical value required.', 'numeric');
 
+            $this->form->addElement('text', 'executive_social', $this->indent . $this->indent . $this->indent . $this->indent . 'Social Cognitiion:');
+            $this->form->addRule('executive_social','Numerical value required.', 'numeric');
+
+           
         $this->form->addElement('static', null, $this->indent . 'Memory');
 
             $this->form->addElement('text', 'memory_immediate', $this->indent . $this->indent . $this->indent . $this->indent . 'Immediate recall:');
