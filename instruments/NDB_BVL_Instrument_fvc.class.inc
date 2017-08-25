@@ -81,12 +81,15 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
         $this->addGroup($group, $field.'_group', $label, null, false);
         unset($group);
-        $scale_array = array_merge(array($field.'_scale{@}=={@}'), $rules);
-        $height_array = array_merge(array($field.'{@}=={@}'), $rules);
+
+        $rule = 'test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity';
+        
+        //$scale_array = array_merge(array($field.'_scale{@}=={@}'), $rules);
+        //$height_array = array_merge(array($field.'{@}=={@}'), $rules);
 
         $this->form->addGroupRule($field."_group",array(array(array("Value must be numeric", 'numeric'))));
-        $this->XINRegisterRule($field, $height_array, $height_message, $field.'_group');
-        $this->XINRegisterRule($field.'_scale', $scale_array, $scale_message, $field.'_group');
+        $this->XINRegisterRule($field, $rule, $height_message, $field.'_group');
+        $this->XINRegisterRule($field.'_scale', $rule, $scale_message, $field.'_group');
 
     }
     /**
@@ -120,13 +123,16 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
         $this->addGroup($group, $field.'_group', $label, null, false);
         unset($group);
-        $scale_array = array_merge(array($field.'_scale{@}=={@}'), $rules);
-        $weight_array = array_merge(array($field.'{@}=={@}'), $rules);
+        $rule = 'test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity';
+        //$scale_array = array_merge(array($field.'_scale{@}=={@}'), $rules);
+        //$weight_array = array_merge(array($field.'{@}=={@}'), $rules);
+      
+
 
         $this->form->addGroupRule($field."_group",array(array(array("Value must be numeric", 'numeric'))));
-        $this->XINRegisterRule($field, $weight_array, $weight_message, $field.'_group');
-        $this->XINRegisterRule($field.'_scale', $scale_array, $scale_message, $field.'_group');
-
+        $this->XINRegisterRule($field, $rule, $weight_message, $field.'_group');
+        $this->XINRegisterRule($field.'_scale', $rule, $scale_message, $field.'_group');
+       
     }
     /**
     * method to build the HTML_Quickform object into a paged form
@@ -188,6 +194,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
                 $this->form->addRule('trial_one','Enter a numerical value.', 'numeric');
 
+            // Rule: Entry of Trial One is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("trial_one", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
+
         // Horizontal Line Break
 
             $this->form->addElement('static', null, $hr_section);
@@ -202,6 +212,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
                 $this->form->addRule('trial_two','Enter a numerical value.', 'numeric');
 
+            // Rule: Entry of Trial Two is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("trial_two", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
+
         // Horizontal Line Break
 
             $this->form->addElement('static', null, $hr_section);
@@ -215,6 +229,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
             // Rule: Trial Three must be a numerical value.
 
                 $this->form->addRule('trial_three','Enter a numerical value.', 'numeric');
+
+            // Rule: Entry of Trial One is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("trial_three", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
 
         // Horizontal Line Break
 
@@ -267,6 +285,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
                 $this->form->addRule('best_trial_volume','Enter a numerical value.', 'numeric');
 
+            // Rule: Entry of Best Trial Volume is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("best_trial_volume", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
+
         // Horizontal Line Break
 
             $this->form->addElement('static', null, $hr_section);
@@ -281,6 +303,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
                 $this->form->addRule('best_trial_percentage','Enter a numerical value.', 'numeric');
 
+            // Rule: Entry of Best Trial Percentage is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("best_trial_percentage", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
+
         // Horizontal Line Break
 
             $this->form->addElement('static', null, $hr_section);
@@ -294,6 +320,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
             // Entry for Other Ethnicity
 
                 $this->form->addElement('text', 'other_ethnicity', $this->indent . $this->indent. "<span style='font-weight:normal'><i>If other, state:</i></span>");
+
+            // Rule: Entry of Ethnicity is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("ethnicity", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
 
             // Rule for Other Ethnicity required only if Ethnicity is set to 'Other'
 
@@ -313,6 +343,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
             // Entry for Other Predicted Reference
 
                 $this->form->addElement('text', 'other_predicted_reference', $this->indent . $this->indent. "<span style='font-weight:normal'><i>If other, state:</i></span>");
+
+            // Rule: Entry of Predicted Reference is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("predicted_reference", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
 
             // Rule for Other Predicted Reference required only if Predicted Reference is set to 'Other'
 
@@ -368,7 +402,11 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
                 $this->form->addElement('text', 'other_breathing_conditions', $this->indent . $this->indent. "<span style='font-weight:normal'><i>If other, state:</i></span>");
 
-            // Rule for Other Predicted Reference required only if Predicted Reference is set to 'Other'
+            // Rule: Entry of Breathing Conditions is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("breathing_conditions", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
+
+            // Rule for Other Breathing Conditions required only if Breathing Reference is set to 'Other'
 
                 $this->XINRegisterRule("other_breathing_conditions",array("breathing_conditions{@}=={@}Other"),"Please provide other breating conditions(s), each separated by a comma.");
 
@@ -383,6 +421,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
                 $this->form->addElement('select', 'smoker', $this->indent . "Smoker:", $smoker);
 
+            // Rule: Entry of Smoker is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("smoker", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
+
         // Horizontal Line Break
 
             $this->form->addElement('static', null, $hr_section);
@@ -393,6 +435,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
             // Entry for FVC Reliability
 
                 $this->form->addElement('select', 'fvc_reliability', $this->indent . "FVC Reliability:", $fvc_reliability);
+
+            // Rule: Entry of FVC Reliability is required only if FVC or SVC was done.
+
+                $this->XINRegisterRule("fvc_reliability", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
 
         // Horizontal Line Break
 
