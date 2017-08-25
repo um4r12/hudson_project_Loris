@@ -76,7 +76,7 @@ class NDB_BVL_Instrument_alsfrs extends NDB_BVL_Instrument
         $this->form->addElement('static', null, $hr_header);
 
         $yes_no_option= array(NULL=>"", "Yes"=>"Yes", "No"=>"No");
-        $scores =array(NULL=>"","1"=>"1","2"=>"2","3"=>"3","4"=>"4");
+        $scores =array(NULL=>"","0"=>"0","1"=>"1","2"=>"2","3"=>"3","4"=>"4");
 
     	
 
