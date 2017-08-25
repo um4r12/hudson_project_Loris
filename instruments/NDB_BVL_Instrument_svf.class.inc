@@ -253,14 +253,14 @@ class NDB_BVL_Instrument_svf extends NDB_BVL_Instrument
 
             
             // Symptom onset date
-            $this->addMonthYear('onset_date', $this->indent.'Symptom onset date:');
+            $this->addBasicDate('onset_date', $this->indent.'Symptom onset date:');
             
             // Horizontal Line Break
  
             $this->form->addElement('static', null, "<br>".$hr_section);  
 
             // Diagnosis date
-            $this->addMonthYear('diagnosis_date', $this->indent.'Diagnosis date:');
+            $this->addBasicDate('diagnosis_date', $this->indent.'Diagnosis date:');
             
             // Horizontal Line Break
  
