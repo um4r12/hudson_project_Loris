@@ -75,7 +75,7 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
         $this->_addMetadataFields();
 
         $yes_no_option= array(NULL=>"", "yes"=>"Yes", "no"=>"No", "not_answered"=>"Not Answered");
-    	$yes_no_unable_option = array(NULL=>"", "yes"=>"Yes", "no"=>"No", "unable"=>"Unable");
+    	$yes_no_unable_option = array(NULL=>"", "yes"=>"Yes", "no"=>"No", "unable"=>"Unable", "not_answered"=>"Not Answered");
 	$tapping_option= array(NULL=>"", "done"=>"Done","not_done"=>"Not Done");
         $done_option=array(NULL=>"", "done"=>"Done","not_done"=>"Not Done");
         $elescorial_option=array(NULL=>"", "suspected"=>"Suspected","possible"=>"Possible", 'probable'=>'Probable','probable_lab'=>'Porbable lab supported','definite'=>'Definite','not_available'=>'N/A');
