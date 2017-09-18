@@ -193,6 +193,9 @@ class NDB_BVL_Instrument_nef_c extends NDB_BVL_Instrument
         $this->XINRegisterRule("medication_detail", array("medication{@}=={@}yes"), "Please provide medication details.");
         $this->XINRegisterRule("notes",array("notes{@}=={@}NEVER_REQUIRED"),"Not required");
 
+	// Last Notes section
+            $this->form->addElement('textarea', 'notes_last', $this->indent . $this->indent .'<u><font size=3>Notes:</font></u>');
+            $this->XINRegisterRule("notes_last",array("notes_last{@}=={@}NEVER_REQUIRED"),"Not required");
         
 
         

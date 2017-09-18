@@ -850,9 +850,10 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
 
             // Diagnosis rules
             $this->XINRegisterRule("diagnosis_other", array("diagnosis{@}=={@}other"), "Required.");
-
-        	//$this->form->addElement('textarea', 'notes_last', $this->indent . $this->indent .'<u><font size=3>Notes:</font></u>');
-        	//$this->XINRegisterRule("notes_last",array("notes_last{@}=={@}NEVER_REQUIRED"),"Not required");
+	    
+	    // Last Notes section
+     	    $this->form->addElement('textarea', 'notes_last', $this->indent . $this->indent .'<u><font size=3>Notes:</font></u>');
+            $this->XINRegisterRule("notes_last",array("notes_last{@}=={@}NEVER_REQUIRED"),"Not required");
 
         $this->addRule('finger_tapping_done', 'Examiner is required', 'required');
 	$this->addRule('feet_tapping_done', 'Examiner is required', 'required');
