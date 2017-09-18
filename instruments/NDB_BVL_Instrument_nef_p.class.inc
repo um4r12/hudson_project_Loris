@@ -75,7 +75,8 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
         $this->_addMetadataFields();
 
         $yes_no_option= array(NULL=>"", "yes"=>"Yes", "no"=>"No", "not_answered"=>"Not Answered");
-    	$tapping_option= array(NULL=>"", "done"=>"Done","not_done"=>"Not Done");
+    	$yes_no_unable_option = array(NULL=>"", "yes"=>"Yes", "no"=>"No", "unable"=>"Unable");
+	$tapping_option= array(NULL=>"", "done"=>"Done","not_done"=>"Not Done");
         $done_option=array(NULL=>"", "done"=>"Done","not_done"=>"Not Done");
         $elescorial_option=array(NULL=>"", "suspected"=>"Suspected","possible"=>"Possible", 'probable'=>'Probable','probable_lab'=>'Porbable lab supported','definite'=>'Definite','not_available'=>'N/A');
         $diagnosis_option=array(NULL=>"", "als"=>"ALS","als_ftd"=>"ALS-FTD", 'ftd'=>'FTD','pls'=>'PLS','pma'=>'PMA','msa'=>'MSA','hsp'=>'HSP','kennedy'=>"Kennedy's",'spinocerebellar_ataxia'=>'Spinocerebellar Ataxia','other'=>'Other');
@@ -709,15 +710,15 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
                 // Arm
                 $this->form->addElement('static', null, $this->indent . $this->indent . ' Arm (finger - nose ataxia)');
 
-                    $this->form->addElement('select', 'cerebellar_arm_right', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Right</i>', $yes_no_option);
-                    $this->form->addElement('select', 'cerebellar_arm_left', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Left</i>', $yes_no_option);
+                    $this->form->addElement('select', 'cerebellar_arm_right', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Right</i>', $yes_no_unable_option);
+                    $this->form->addElement('select', 'cerebellar_arm_left', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Left</i>', $yes_no_unable_option);
 
 
                // Leg
                 $this->form->addElement('static', null, $this->indent . $this->indent . ' Leg (heel - shin ataxia)');
 
-                    $this->form->addElement('select', 'cerebellar_leg_right', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Right</i>', $yes_no_option);
-                    $this->form->addElement('select', 'cerebellar_leg_left', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Left</i>', $yes_no_option);
+                    $this->form->addElement('select', 'cerebellar_leg_right', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Right</i>', $yes_no_unable_option);
+                    $this->form->addElement('select', 'cerebellar_leg_left', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Left</i>', $yes_no_unable_option);
 
 
 
