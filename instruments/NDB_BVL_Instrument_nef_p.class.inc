@@ -736,6 +736,33 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
             $this->form->addElement('static', null, '');
             $this->form->addElement('static', null, '');
             $this->form->addElement('static', null, '');  
+		
+
+	    // Gait
+            $this->form->addElement('static', null, $this->indent . '<u><font size=3>Gait</font></u>');
+
+            $this->form->addElement('select', 'gait_done', $this->indent . $this->indent . '&nbsp Has the Gait section been completed?', $done_option);
+
+                // Gait Questions
+
+
+                // Spastic
+
+                    $this->form->addElement('select', 'gait_spastic', $this->indent . $this->indent . $this->indent .  'Spastic', $yes_no_unable_option);
+                    $this->form->addElement('select', 'gait_ataxic', $this->indent . $this->indent . $this->indent . 'Ataxic', $yes_no_unable_option);
+
+
+            // Gait Done/Not Done rules
+            $this->XINRegisterRule("gait_spastic", array("gait_done{@}=={@}done"), "Required.");
+            $this->XINRegisterRule("gait_ataxic", array("gait_done{@}=={@}done"), "Required.");
+
+            // Breaks
+            $this->form->addElement('static', null, '');
+            $this->form->addElement('static', null, '');
+            $this->form->addElement('static', null, '');
+            $this->form->addElement('static', null, '');
+            $this->form->addElement('static', null, '');
+            $this->form->addElement('static', null, '');
 
             // Sites of ALS Involvement
             $this->form->addElement('static', null, $this->indent . '<u><font size=3>Sites of ALS Involvement</font></u>');
