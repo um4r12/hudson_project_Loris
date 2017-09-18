@@ -683,16 +683,16 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
             $this->form->addElement('static', null, '');
             $this->form->addElement('static', null, '');  
 
-            // Pseudobublar Affect
-            $this->form->addElement('static', null, $this->indent . '<u><font size=3>Pseudobublar Affect</font></u>');
+            // Pseudobulbar Affect
+            $this->form->addElement('static', null, $this->indent . '<u><font size=3>Pseudobulbar Affect</font></u>');
 
-            $this->form->addElement('select', 'pseudobublar_done', $this->indent . $this->indent . '&nbsp Has the Pseudobulbar Affect section been completed?', $done_option);
+            $this->form->addElement('select', 'pseudobulbar_done', $this->indent . $this->indent . '&nbsp Has the Pseudobulbar Affect section been completed?', $done_option);
 
-                // Pseudobublar Affect Questions
-                $this->form->addElement('select', 'pseudobublar', $this->indent . $this->indent . $this->indent . "Pseudobublar", $yes_no_option);
+                // Pseudobulbar Affect Questions
+                $this->form->addElement('select', 'pseudobulbar', $this->indent . $this->indent . $this->indent . "Pseudobulbar", $yes_no_option);
 
-            // Pseudobublar Affect Done/Not Done Rules
-            $this->XINRegisterRule("pseudobublar", array("pseudobublar_done{@}=={@}done"), "Required.");
+            // Pseudobulbar Affect Done/Not Done Rules
+            $this->XINRegisterRule("pseudobulbar", array("pseudobulbar_done{@}=={@}done"), "Required.");
 
             // Breaks
             $this->form->addElement('static', null, '');
