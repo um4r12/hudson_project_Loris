@@ -253,18 +253,14 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
 
 
                 // Weakness
-                $this->form->addElement('static', null, $this->indent . $this->indent . ' Weakness');
+                $this->form->addElement('select', 'tongue_weakness', $this->indent . $this->indent . $this->indent. 'Weakness:', $yes_no_option);
 
-                    $this->form->addElement('select', 'tongue_weakness_right', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Right</i>', $yes_no_option);
-                    $this->form->addElement('select', 'tongue_weakness_left', $this->indent . $this->indent . $this->indent . $this->indent . '<i>Left</i>', $yes_no_option);
-
+                   
             // Tongue Done/Not Done rules
             $this->XINRegisterRule("tongue_fasciculations", array("tongue_done{@}=={@}done"), "Required.");
             $this->XINRegisterRule("tongue_atrophy", array("tongue_done{@}=={@}done"), "Required.");
-            $this->XINRegisterRule("tongue_weakness_left", array("tongue_done{@}=={@}done"), "Required.");
-            $this->XINRegisterRule("tongue_weakness_right", array("tongue_done{@}=={@}done"), "Required.");
-
-
+            $this->XINRegisterRule("tongue_weakness", array("tongue_done{@}=={@}done"), "Required.");
+            
             // Breaks
             $this->form->addElement('static', null, '');
             $this->form->addElement('static', null, '');
