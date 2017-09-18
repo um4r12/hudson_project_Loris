@@ -97,18 +97,19 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
         $this->form->addElement('static', null, '');
         $this->form->addElement('static', null, '');
         $this->form->addElement('static', null, '');
-        $this->form->addElement('select', 'tapping_done',$this->indent . ' Has the Tapping section been completed?', $tapping_option);
+        $this->form->addElement('select', 'finger_tapping_done',$this->indent . ' Has the Finger Tapping section been completed?', $tapping_option);
+	$this->form->addElement('select', 'feet_tapping_done',$this->indent . ' Has the Feet Tapping section been completed?', $tapping_option);	
         $this->form->addElement('date', 'tapping_date', $this->indent . $this->indent . 'Date of Tapping:');
 
-        $this->XINRegisterRule("f_r_1", array("tapping_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("f_l_1", array("tapping_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("f_r_2", array("tapping_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("f_l_2", array("tapping_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("fe_r_1", array("tapping_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("fe_l_1", array("tapping_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("fe_r_2", array("tapping_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("fe_l_2", array("tapping_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("tapping_date", array("tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("f_r_1", array("finger_tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("f_l_1", array("finger_tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("f_r_2", array("finger_tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("f_l_2", array("finger_tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("fe_r_1", array("feet_tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("fe_l_1", array("feet_tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("fe_r_2", array("feet_tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("fe_l_2", array("feet_tapping_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("tapping_date", array("finger_tapping_done{@}=={@}done|feet_tapping_done{@}=={@}done"), "Required.");
 
             //Fingers
         $this->form->addElement('static', null, $this->indent . '<font size=3>Fingers </font><i><font size=2>(If unable, enter "0")  </font></i>.');
@@ -829,7 +830,8 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
         	//$this->form->addElement('textarea', 'notes_last', $this->indent . $this->indent .'<u><font size=3>Notes:</font></u>');
         	//$this->XINRegisterRule("notes_last",array("notes_last{@}=={@}NEVER_REQUIRED"),"Not required");
 
-        $this->addRule('tapping_done', 'Examiner is required', 'required');
+        $this->addRule('finger_tapping_done', 'Examiner is required', 'required');
+	$this->addRule('feet_tapping_done', 'Examiner is required', 'required');
         $this->addRule('speech_done', 'Examiner is required', 'required');
         $this->addRule('saccades_done', 'Examiner is required', 'required');
         $this->addRule('mri_done', 'Examiner is required', 'required');
