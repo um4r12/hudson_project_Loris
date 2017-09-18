@@ -871,7 +871,7 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
         $this->addRule('power_done', 'Examiner is required', 'required');
         $this->addRule('muscle_done', 'Examiner is required', 'required');
         $this->addRule('other_done', 'Examiner is required', 'required');
-        $this->addRule('pseudobublar_done', 'Examiner is required', 'required');
+        $this->addRule('pseudobulbar_done', 'Examiner is required', 'required');
         $this->addRule('cerebellar_done', 'Examiner is required', 'required');
         $this->addRule('emg_done', 'Examiner is required', 'required');
         $this->addRule('elescorial_diagnosis', 'Examiner is required', 'required');
