@@ -212,9 +212,10 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
                 $this->form->addRule('trial_two','Enter a numerical value.', 'numeric');
 
-            // Rule: Entry of Trial Two is required only if FVC or SVC was done.
 
-                $this->XINRegisterRule("trial_two", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
+	    // Rule: Entry of Trial Two is never required.
+
+                $this->XINRegisterRule("trial_two", array("trial_two{@}=={@}NEVER_REQUIRED"), "Not required.");
 
         // Horizontal Line Break
 
@@ -230,9 +231,9 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
 
                 $this->form->addRule('trial_three','Enter a numerical value.', 'numeric');
 
-            // Rule: Entry of Trial One is required only if FVC or SVC was done.
+            // Rule: Entry of Trial Three is never required.
 
-                $this->XINRegisterRule("trial_three", array("test_type{@}=={@}Forced Vital Capacity|Slow Vital Capacity"), "Required.");
+                $this->XINRegisterRule("trial_three", array("trial_three{@}=={@}NEVER_REQUIRED"), "Not required.");
 
         // Horizontal Line Break
 
