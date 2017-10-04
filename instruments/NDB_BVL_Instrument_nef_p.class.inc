@@ -1090,7 +1090,7 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
 //	print_r($uploadedFile);
 //     	$media_files = array_column($db->pselect("SELECT file_name FROM media", array()),'file_name');
 	$media_files = scandir("/data/uploads/");
-	print_r($media_files); 
+	 
         if (in_array(strtolower($uploadedFile['basename']),array_map('strtolower',$media_files))){
         	return array("A file with the same name has already been uploaded!");
 	}
