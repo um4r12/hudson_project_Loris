@@ -27,7 +27,7 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
         // data keyed by commentID
         $this->commentID = $commentID;
 
-        $this->_requiredElements = array('Date_taken', 'Examiner');
+        $this->_requiredElements = array('Date_taken');
         
         $this->dateTimeFields=array("Date_taken");
         $this->_selectMultipleElements = array("breathing_conditions");
@@ -572,14 +572,14 @@ class NDB_BVL_Instrument_fvc extends NDB_BVL_Instrument
         //        'Please enter date of administration and press Save'
         //    );
         //}
-        $examiners = $this->_getExaminerNames();
-        $this->addSelect('Examiner', $this->indent.'Examiner', $examiners);
+        //$examiners = $this->_getExaminerNames();
+       // $this->addSelect('Examiner', $this->indent.'Examiner', $examiners);
         $this->addRule(
             'Date_taken',
             'Date of Administration is required',
             'required'
         );
-        $this->addRule('Examiner', 'Examiner is required', 'required');
+        //$this->addRule('Examiner', 'Examiner is required', 'required');
     
     }
 }
