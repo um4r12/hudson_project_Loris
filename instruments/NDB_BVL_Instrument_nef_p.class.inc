@@ -78,13 +78,14 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
     	$yes_no_unable_option = array(NULL=>"", "yes"=>"Yes", "no"=>"No", "unable"=>"Unable", "not_answered"=>"Not Answered");
 	$tapping_option= array(NULL=>"", "done"=>"Done","not_done"=>"Not Done");
         $done_option=array(NULL=>"", "done"=>"Done","not_done"=>"Not Done");
-        $elescorial_option=array(NULL=>"", "suspected"=>"Suspected","possible"=>"Possible", 'probable'=>'Probable','probable_lab'=>'Porbable lab supported','definite'=>'Definite','not_available'=>'N/A');
+        $elescorial_option=array(NULL=>"", "suspected"=>"Suspected","possible"=>"Possible", 'probable'=>'Probable','probable_lab'=>'Probable lab supported','definite'=>'Definite','not_available'=>'N/A');
         $diagnosis_option=array(NULL=>"", "als"=>"ALS","als_ftd"=>"ALS-FTD", 'ftd'=>'FTD','pls'=>'PLS','pma'=>'PMA','msa'=>'MSA','hsp'=>'HSP','kennedy'=>"Kennedy's",'spinocerebellar_ataxia'=>'Spinocerebellar Ataxia','other'=>'Other');
         $dysarthia_option = array(NULL=>"", "zero"=>"0","one"=>"1", 'two'=>'2','three'=>'3');
-        $spasticity_option = array(NULL=>"", "zero"=>"0","one"=>"1", "one_plus"=>"1+", 'two'=>'2','three'=>'3','four'=>'4');
-        $power_option = array(NULL=>"", "zero"=>"0","one"=>"1", 'two'=>'2','three'=>'3','four_minus-'=>'4-','four'=>'4','four_plus'=>'4+','five'=>'5');
-        $muscle_option = array(NULL=>"", "zero"=>"0","one"=>"1", 'two'=>'2','three'=>'3','four'=>'4');
-        $other_option = array(NULL=>"", "zero"=>"0","one"=>"1", 'five'=>'5');
+        $spasticity_option = array(NULL=>"", "zero"=>"0","one"=>"1", "one_plus"=>"1+", 'two'=>'2','three'=>'3','four'=>'4','not_answered'=>'Not Answered');
+        $power_option = array(NULL=>"", "zero"=>"0","one"=>"1", 'two'=>'2','three'=>'3','four_minus-'=>'4-','four'=>'4','four_plus'=>'4+','five'=>'5', 'not_answered'=>'Not Answered');
+	
+        $muscle_option = array(NULL=>"", "zero"=>"0","one"=>"1", 'two'=>'2','three'=>'3','four'=>'4','not_answered'=>'Not Answered');
+        $other_option = array(NULL=>"", "zero"=>"0","one"=>"1", 'five'=>'5', 'not_answered'=>'Not Answered');
     	
         // Tapping
         $this->form->addElement('static', null, '');
@@ -153,12 +154,12 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
         $this->form->addElement('static', null, '<font size=4>Speech Testing</font>');
         $this->form->addElement('select', 'speech_done',$this->indent .  '&nbsp Has Speech Testing been completed?', $done_option);
         $this->form->addElement('date', 'speech_date', $this->indent . $this->indent . 'Date of Speech Testing:');
-        $this->form->addElement('text', 'file_number', $this->indent . $this->indent . 'SIT file number:');
-        $this->form->addElement('text', 'file_name', $this->indent . $this->indent . 'Audio file name:');
+        $this->form->addElement('text', 'file_number', $this->indent . $this->indent .'SIT file number (if available):');
+        $this->form->addElement('text', 'file_name', $this->indent . $this->indent . 'Audio file name (<i>PSCID_mmddyy</i>):');
         $this->form->addElement('file', 'upload_file', $this->indent . $this->indent .'Upload the speech testing file');
         $this->XINRegisterRule("upload_file", array("speech_done{@}=={@}NOT_REQUIRED"), "Required.");
         $this->XINRegisterRule("speech_date", array("speech_done{@}=={@}done"), "Required.");
-        $this->XINRegisterRule("file_number", array("speech_done{@}=={@}done"), "Required.");
+        $this->XINRegisterRule("file_number", array("speech_done{@}=={@}NOT_REQUIRED"), "Required.");
         $this->XINRegisterRule("file_name", array("speech_done{@}=={@}done"), "Required.");
 
         $this->form->addElement('static', null, '');
@@ -725,8 +726,8 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
             // Cerebellar Dysfunction Done/Not Done rules
             $this->XINRegisterRule("cerebellar_arm_right", array("cerebellar_done{@}=={@}done"), "Required.");
             $this->XINRegisterRule("cerebellar_arm_left", array("cerebellar_done{@}=={@}done"), "Required.");
-            $this->XINRegisterRule("cerebellar_arm_right", array("cerebellar_done{@}=={@}done"), "Required.");
-            $this->XINRegisterRule("cerebellar_arm_left", array("cerebellar_done{@}=={@}done"), "Required.");
+            $this->XINRegisterRule("cerebellar_leg_right", array("cerebellar_done{@}=={@}done"), "Required.");
+            $this->XINRegisterRule("cerebellar_leg_left", array("cerebellar_done{@}=={@}done"), "Required.");
 
 
             // Breaks
@@ -1071,10 +1072,14 @@ class NDB_BVL_Instrument_nef_p extends NDB_BVL_Instrument
         $PSCID = $candidate->getPSCID();
         $file_name = explode("_",$args['values']['upload_file']['name']);
         $file_type = explode("_",$args['values']['upload_file']['type']);
-        if ($PSCID != $file_name[0]){
+        if ($args['values']['upload_file']['name'][6] != "_"){
+                return array("Improper format: File should be named as <i>$PSCID"."_mmddyy.</i>");
+        }
+
+	if ($PSCID != $file_name[0]){
             
             
-            return array("Improper format: File name does not begin with PSCID.");
+            return array("Improper format: File name does not begin with PSCID ($PSCID).");
         }
        
      
