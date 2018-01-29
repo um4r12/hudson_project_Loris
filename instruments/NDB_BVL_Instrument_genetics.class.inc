@@ -30,7 +30,7 @@ class NDB_BVL_Instrument_genetics extends NDB_BVL_Instrument
         $this->_requiredElements = array('Date_taken', 'Examiner', 'form_type');
         
         $this->dateTimeFields=array("Date_taken", "genetic_date");
-        $this->_selectMultipleElements = array("genes");
+        $this->_selectMultipleElements = array("genes", "dementia_options");
         
         // setup the form
         $this->_setupForm();
@@ -78,9 +78,9 @@ class NDB_BVL_Instrument_genetics extends NDB_BVL_Instrument
 	        $yes_no_option= array(NULL=>"", "yes"=>"Yes", "no"=>"No", "not_answered"=>"Not Answered");
 	    	$normal_option= array(NULL=>"", "initial"=>"Initial","update"=>"Update", "no_change"=>"No Change", "not_answered"=>"Not Answered");
 	    	$gene_options = array(NULL=>"", "c9orf72"=>"C9orf72", "sod1"=>"SOD1", "tdp"=>"TDP", "fus"=>"FUS", "other"=>"Other");
-
+	    	$dementia_options =array(NULL=>"", "ftd"=>"FTD", "alzheimers"=>"Alzheimer's Disease", "dementia_lewyBodies"=>"Dementia with Lewy Bodies", "other"=>"Other (Diagnosis other than one listed above)", "unknown"=>"Unknown (diagnosis unknown)");
         // Family History
-
+		
 	        $this->form->addElement('select', 'form_type', $this->indent."F<span style='font-size: 12px'>AMILY </span>H<span style='font-size: 12px'>ISTORY</span>", $normal_option);
 	        $this->XINRegisterRule("als", array("form_type{@}=={@}initial"), "Required.");
 	        $this->XINRegisterRule("mnd", array("form_type{@}=={@}initial"), "Required.");
@@ -107,15 +107,14 @@ class NDB_BVL_Instrument_genetics extends NDB_BVL_Instrument
         	$this->form->addElement('static', null, $hr_section);
 
         // Is there a family history of Dementia?
+		
+	        $this->form->addElement('select', 'dementia', $this->indent . 'Is there a family history of Dementia:', $yes_no_option);
+       		$this->form->addElement('select', 'dementia_options', $this ->indent .$this->indent . "<span style='font-weight:normal'><i>If yes, what types (hold <em><i>ctrl</i></em> to select multiple options):</i></span>", $dementia_options, array('multiple'=>'multiple'));
+	       	$this->form->addElement('textarea', 'f_a_other',$this->indent . "<span style='font-weight:normal'><i>If yes, list relation(s) and diagnosis</i></span>");
+        	$this->XINRegisterRule("f_a_other",array("dementia{@}=={@}yes"), "Please provide relation(s) and diagnosis.");
+			$this->XINRegisterRule("dementia_options", array("dementia{@}=={@}yes"), "Please provide the type(s) of dementia.");
 
-	        $this->form->addElement('static', null, 'Is there a family history of:');
-	        $this->form->addElement('select', 'dementia', $this->indent . $this->indent .'Dementia:', $yes_no_option);
-	        $this->form->addElement('select', 'ftd', $this->indent . $this->indent .'FTD:', $yes_no_option);
-	        $this->form->addElement('select', 'alzheimers',$this->indent . $this->indent ."Alzheimer's Disease:", $yes_no_option);
-	        $this->form->addElement('textarea', 'f_a_other', $this->indent . $this->indent.$this->indent . "<span style='font-weight:normal'><i>If yes, list relation(s) and diagnosis</i></span>");
-	        $this->XINRegisterRule("f_a_other",array("dementia{@}=={@}yes|alzheimers{@}=={@}yes|ftd{@}=={@}yes"), "Please provide relation(s) and diagnosis.");
-
-        // Horizontal Line Break      
+	// Horizontal Line Break      
 
         	$this->form->addElement('static', null, $hr_section);
 
@@ -170,8 +169,8 @@ class NDB_BVL_Instrument_genetics extends NDB_BVL_Instrument
 
         // Which genes are involved?
 
-	        $this->form->addElement('select', 'genes', $this ->indent . 'Which genes were involved?', $gene_options, array('multiple'=>'multiple'));
-	        $this->form->addElement('textarea', 'other_genes', $this ->indent . $this ->indent .$this->indent. "<span style='font-weight:normal'><i>If other, please state:</i></span>");
+	       $this->form->addElement('select', 'genes', $this ->indent . 'Which genes were involved?', $gene_options, array('multiple'=>'multiple'));
+	       $this->form->addElement('textarea', 'other_genes', $this ->indent . $this ->indent .$this->indent. "<span style='font-weight:normal'><i>If other, please state:</i></span>");
 	        $this->XINRegisterRule("other_genes", array("genes{@}=={@}other"), "Please provide gene(s) that are involved.");
 	        $this->XINRegisterRule("genes", array("mutation{@}=={@}yes"), "Please provide the mutation(s).");
 
